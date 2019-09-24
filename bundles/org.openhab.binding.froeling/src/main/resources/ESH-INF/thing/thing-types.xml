@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="froeling"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+    <thing-type id="controller">
+        <supported-bridge-type-refs>
+            <bridge-type-ref id="ipbridge"/>
+        </supported-bridge-type-refs>
+
+        <label>Froeling Controller</label>
+        <description>Froeling Controller</description>
+
+        <channels>
+            <channel id="status" typeId="status"/>
+            <channel id="furnacetemperature-current" typeId="furnacetemperature-current"/>
+            <channel id="exhaustgastemperature-current" typeId="exhaustgastemperature-current"/>
+            <channel id="furnacecontrolvariable" typeId="furnacecontrolvariable"/>
+            <channel id="primaryair" typeId="primaryair"/>
+            <channel id="remainoxygen" typeId="remainoxygen"/>
+            <channel id="oxygencontroller" typeId="oxygencontroller"/>
+            <channel id="secondaryair" typeId="secondaryair"/>
+            <channel id="idfan-setpoint" typeId="idfan-setpoint"/>
+            <channel id="idfan-current" typeId="idfan-current"/>
+            <channel id="exhaustgastemperature-setpoint" typeId="exhaustgastemperature-setpoint"/>
+            <channel id="slidein-current" typeId="slidein-current"/>
+            <channel id="pellet" typeId="pellet"/>
+            <channel id="fillinglevel" typeId="fillinglevel"/>
+            <channel id="intakespeed" typeId="intakespeed"/>
+            <channel id="deliverypower" typeId="deliverypower"/>
+            <channel id="sensor-1" typeId="sensor-1"/>
+            <channel id="furnacetemperature-setpoint" typeId="furnacetemperature-setpoint"/>
+            <channel id="sensor-buffertop" typeId="sensor-buffertop"/>
+            <channel id="sensor-bufferbottom" typeId="sensor-bufferbottom"/>
+            <channel id="bufferpump" typeId="bufferpump"/>
+            <channel id="sensor-boiler" typeId="sensor-boiler"/>
+            <channel id="sensor-flow1" typeId="sensor-flow1"/>
+            <channel id="sensor-flow2" typeId="sensor-flow2"/>
+            <channel id="heatingcircuitpump1" typeId="heatingcircuitpump1"/>
+            <channel id="heatingcircuitpump2" typeId="heatingcircuitpump2"/>
+            <channel id="outdoortemperature" typeId="outdoortemperature"/>
+            <channel id="collectortemperature" typeId="collectortemperature"/>
+            <channel id="operatinghours" typeId="operatinghours"/>
+            <channel id="error" typeId="error"/>
+            <channel id="lastupdate" typeId="lastupdate"/>
+        </channels>
+
+        <config-description>
+            <parameter name="controllerType" type="text" required="true">
+                <label>Controller type</label>
+                <description>Type of the Froeling controller</description>
+                <options>
+                    <option value="P3200">P3200</option>
+                </options>
+            </parameter>
+            <parameter name="comPort" type="text" required="true">
+                <label>COM-Port</label>
+                <description>COM-Port of the Froeling Controller</description>
+                <options>
+                    <option value="COM1">COM1</option>
+                </options>
+            </parameter>
+            <parameter name="pollingInterval" type="integer" required="true" min="5" max="3600">
+                <label>Polling interval (in seconds)</label>
+                <description>The polling interval controls in which intervals to read data from Froeling controller</description>
+                <default>600</default>
+            </parameter>
+        </config-description>
+
+    </thing-type>
+
+    <channel-type id="status">
+        <item-type>String</item-type>
+        <label>Status</label>
+        <description>Furnace status</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="furnacetemperature-current">
+        <item-type>Number</item-type>
+        <label>Furnace temperature current</label>
+        <description>Furnace temperature current</description>
+        <category>Temperature</category>
+        <state pattern="%.1f °C" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="exhaustgastemperature-current">
+        <item-type>Number</item-type>
+        <label>Exhaust temperature current</label>
+        <description>Exhaust temperature current</description>
+        <category>Temperature</category>
+        <state pattern="%.1f °C" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="furnacecontrolvariable">
+        <item-type>Number</item-type>
+        <label>Furnace control variable</label>
+        <description>Furnace control variable</description>
+        <category>Text</category>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="primaryair">
+        <item-type>Number</item-type>
+        <label>Primary air</label>
+        <description>Primary air</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="remainoxygen">
+        <item-type>Number</item-type>
+        <label>Remain oxygen</label>
+        <description>Remain oxygen</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="oxygencontroller">
+        <item-type>Number</item-type>
+        <label>Oxygen controller</label>
+        <description>Oxygen controller</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="secondaryair">
+        <item-type>Number</item-type>
+        <label>Secondary air</label>
+        <description>Secondary air</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="idfan-setpoint">
+        <item-type>Number</item-type>
+        <label>ID fan setpoint</label>
+        <description>ID fan setpoint</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="idfan-current">
+        <item-type>Number</item-type>
+        <label>ID fan current</label>
+        <description>ID fan current</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="exhaustgastemperature-setpoint">
+        <item-type>Number</item-type>
+        <label>Exhaust temperature setpoint</label>
+        <description>Exhaust temperature setpoint</description>
+        <category>Temperature</category>
+        <state pattern="%.1f °C" readOnly="true"></state>
+    </channel-type>
+     
+    <channel-type id="slidein-current">
+        <item-type>Number</item-type>
+        <label>Slidein current</label>
+        <description>Slidein current</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="pellet">
+        <item-type>Number</item-type>
+        <label>Pellet</label>
+        <description>Pellet</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="fillinglevel">
+        <item-type>Number</item-type>
+        <label>Filling level</label>
+        <description>Filling level</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="intakespeed">
+        <item-type>Number</item-type>
+        <label>Intake speek</label>
+        <description>Intake speed</description>
+        <state pattern="%s m/s" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="deliverypower">
+        <item-type>Number</item-type>
+        <label>Delivery power</label>
+        <description>Delivery power</description>
+        <state pattern="%s A" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="sensor-1">
+        <item-type>Number</item-type>
+        <label>Sensor 1</label>
+        <description>Sensor 1</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="furnacetemperature-setpoint">
+        <item-type>Number</item-type>
+        <label>Furnacetemperature setpoint</label>
+        <description>Furnacetemperature setpoint</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="sensor-buffertop">
+        <item-type>Number</item-type>
+        <label>Sensor buffer top</label>
+        <description>Sensor buffer top</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="sensor-bufferbottom">
+        <item-type>Number</item-type>
+        <label>Sensor buffer bottom</label>
+        <description>Sensor buffer bottom</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="bufferpump">
+        <item-type>Number</item-type>
+        <label>Buffer pump</label>
+        <description>Buffer pump</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="sensor-boiler">
+        <item-type>Number</item-type>
+        <label>Sensor boiler</label>
+        <description>Sensor boiler</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="sensor-flow1">
+        <item-type>Number</item-type>
+        <label>Sensor flow 1</label>
+        <description>Sensor flow 1</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="sensor-flow2">
+        <item-type>Number</item-type>
+        <label>Sensor flow 2</label>
+        <description>Sensor flow 2</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="heatingcircuitpump1">
+        <item-type>Number</item-type>
+        <label>Heating circuit pump 1</label>
+        <description>Heating circuit pump 1</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="heatingcircuitpump2">
+        <item-type>Number</item-type>
+        <label>Heating circuit pump 2</label>
+        <description>Heating circuit pump 2</description>
+        <state pattern="%s %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="outdoortemperature">
+        <item-type>Number</item-type>
+        <label>Outdoor temperature</label>
+        <description>Outdoor temperature</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="collectortemperature">
+        <item-type>Number</item-type>
+        <label>Collector temperature</label>
+        <description>Collector temperature</description>
+        <state pattern="%s °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="operatinghours">
+        <item-type>Number</item-type>
+        <label>Operating hours</label>
+        <description>Operating hours</description>
+        <state pattern="%s h" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="error">
+        <item-type>String</item-type>
+        <label>Error</label>
+        <description>Error</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="lastupdate">
+        <item-type>DateTime</item-type>
+        <label>Last Update</label>
+        <description>Time of last update</description>
+        <state readOnly="true"></state>
+    </channel-type>
+
+</thing:thing-descriptions>
