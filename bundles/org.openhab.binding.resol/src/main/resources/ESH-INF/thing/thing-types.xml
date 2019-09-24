@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="resol"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+    <thing-type id="controller">
+        <supported-bridge-type-refs>
+            <bridge-type-ref id="ipbridge"/>
+        </supported-bridge-type-refs>
+        
+        <label>Resol Controller Binding</label>
+        <description>Binding for Resol Solar Controllers</description>
+
+        <channels>           
+            <channel id="temperature-s1" typeId="temperature-s1"/>
+            <channel id="temperature-s2" typeId="temperature-s2"/>
+            <channel id="temperature-s3" typeId="temperature-s3"/>
+            <channel id="temperature-s4" typeId="temperature-s4"/>
+            <channel id="temperature-vfd1" typeId="temperature-vfd1"/>
+            <channel id="volumetricflowrate-vfd1" typeId="volumetricflowrate-vfd1"/>
+            <channel id="speed-relais1" typeId="speed-relais1"/>
+            <channel id="speed-relais2" typeId="speed-relais2"/>
+            <channel id="voltage-10v" typeId="voltage-10v"/>
+            <channel id="errormask" typeId="errormask"/>
+            <channel id="operatinghours-relais1" typeId="operatinghours-relais1"/>
+            <channel id="operatinghours-relais2" typeId="operatinghours-relais2"/>
+            <channel id="heatsupplied" typeId="heatsupplied"/>
+            <channel id="sw-version" typeId="sw-version"/>
+            <channel id="variant" typeId="variant"/>
+            <channel id="unit-type" typeId="unit-type"/>
+            <channel id="system" typeId="system"/>
+            <channel id="system-time" typeId="system-time"/>
+            <channel id="s1-broken" typeId="s1-broken"/>
+            <channel id="s2-broken" typeId="s2-broken"/>
+            <channel id="s3-broken" typeId="s3-broken"/>
+            <channel id="s4-broken" typeId="s4-broken"/>
+            <channel id="statusmask" typeId="statusmask"/>
+            <channel id="lastupdate" typeId="lastupdate"/>
+        </channels>
+        
+        <config-description>
+            <parameter name="pollingInterval" type="integer" required="true" min="5" max="3600">
+                <label>Polling interval (in seconds)</label>
+                <description>The polling interval controls in which intervals to read data from Resol controller</description>
+                <default>600</default>
+            </parameter>
+        </config-description>
+ 
+    </thing-type>
+
+    <channel-type id="temperature-s1">
+        <item-type>Number</item-type>
+        <label>Temperature S1</label>
+        <description>Temperature S1</description>
+        <state pattern="%.1f °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="temperature-s2">
+        <item-type>Number</item-type>
+        <label>Temperature S2</label>
+        <description>Temperature S2</description>
+        <state pattern="%.1f °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="temperature-s3">
+        <item-type>Number</item-type>
+        <label>Temperature S3</label>
+        <description>Temperature S3</description>
+        <state pattern="%.1f °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="temperature-s4">
+        <item-type>Number</item-type>
+        <label>Temperature S4</label>
+        <description>Temperature S4</description>
+        <state pattern="%.1f °C" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="temperature-vfd1">
+        <item-type>Number</item-type>
+        <label>Temperature VFD1</label>
+        <description>Temperature VFD1</description>
+        <state pattern="%.1f °C" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="volumetricflowrate-vfd1">
+        <item-type>Number</item-type>
+        <label>Volumetric flow rate VFD1</label>
+        <description>Volumetric flow rate VFD1</description>
+        <state pattern="%.1f l/h" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="speed-relais1">
+        <item-type>Number</item-type>
+        <label>Speed relais 1</label>
+        <description>Speed relais 1</description>
+        <state pattern="%.1f %" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="speed-relais2">
+        <item-type>Number</item-type>
+        <label>Speed relais 2</label>
+        <description>Speed relais 2</description>
+        <state pattern="%.1f %" readOnly="true"></state>
+    </channel-type>
+        
+    <channel-type id="voltage-10v">
+        <item-type>Number</item-type>
+        <label>Voltage 10V</label>
+        <description>Voltage 10V</description>
+        <state pattern="%.1f V" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="errormask">
+        <item-type>String</item-type>
+        <label>Erros mask</label>
+        <description>Error mask</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="operatinghours-relais1">
+        <item-type>Number</item-type>
+        <label>Operating hours relais 1</label>
+        <description>Operating hours relais 1</description>
+        <state pattern="%.1f h" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="operatinghours-relais2">
+        <item-type>Number</item-type>
+        <label>Operating hours relais 2</label>
+        <description>Operating hours relais 2</description>
+        <state pattern="%.1f h" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="heatsupplied">
+        <item-type>Number</item-type>
+        <label>Heat supplied</label>
+        <description>Heat supplied</description>
+        <state pattern="%.1f Wh" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="sw-version">
+        <item-type>String</item-type>
+        <label>Software version</label>
+        <description>Software version</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="variant">
+        <item-type>String</item-type>
+        <label>Variant</label>
+        <description>Variant</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="unit-type">
+        <item-type>String</item-type>
+        <label>Unit type</label>
+        <description>Unit type</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="system">
+        <item-type>String</item-type>
+        <label>System</label>
+        <description>System</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="system-time">
+        <item-type>String</item-type>
+        <label>System time</label>
+        <description>System time</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="s1-broken">
+        <item-type>Number</item-type>
+        <label>Sensor 1 broken</label>
+        <description>Sensor 1 broken</description>
+        <state pattern="%.1f" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="s2-broken">
+        <item-type>Number</item-type>
+        <label>Sensor 2 broken</label>
+        <description>Sensor 2 broken</description>
+        <state pattern="%.1f" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="s3-broken">
+        <item-type>Number</item-type>
+        <label>Sensor 3 broken</label>
+        <description>Sensor 3 broken</description>
+        <state pattern="%.1f" readOnly="true"></state>
+    </channel-type>
+    
+    <channel-type id="s4-broken">
+        <item-type>Number</item-type>
+        <label>Sensor 4 broken</label>
+        <description>Sensor 4 broken</description>
+        <state pattern="%.1f" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="statusmask">
+        <item-type>String</item-type>
+        <label>Status mask</label>
+        <description>Status mask</description>
+        <state pattern="%s" readOnly="true"></state>
+    </channel-type>
+
+    <channel-type id="lastupdate">
+        <item-type>DateTime</item-type>
+        <label>Last Update</label>
+        <description>Time of last update</description>
+        <state readOnly="true"></state>
+    </channel-type>
+
+
+</thing:thing-descriptions>
